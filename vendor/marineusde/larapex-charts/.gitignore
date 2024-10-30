@@ -1,0 +1,10 @@
+vendor
+composer.lock
+.phpunit.cache
+coverage
+.idea
+build
+.vscode
+
+# Ignore phpstan Cache
+/var

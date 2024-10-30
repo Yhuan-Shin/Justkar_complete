@@ -1,0 +1,20 @@
+<?php
+
+namespace {{ namespace }};
+
+use marineusde\LarapexCharts\Charts\RadialBarChart AS OriginalRadialBarChart;
+use Illuminate\Http\JsonResponse;
+
+class {{ class }}
+{
+    public function build(): JsonResponse
+    {
+        return (new OriginalRadialBarChart)
+            ->setTitle('Passing effectiveness.')
+            ->setSubtitle('Barcelona city vs Madrid sports.')
+            ->addData([75, 60])
+            ->setLabels(['Barcelona city', 'Madrid sports'])
+            ->setColors(['#D32F2F', '#03A9F4'])
+            ->toJson();
+    }
+}

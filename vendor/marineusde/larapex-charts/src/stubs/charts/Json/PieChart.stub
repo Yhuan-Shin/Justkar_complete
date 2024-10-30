@@ -1,0 +1,19 @@
+<?php
+
+namespace {{ namespace }};
+
+use marineusde\LarapexCharts\Charts\PieChart AS OriginalPieChart;
+use Illuminate\Http\JsonResponse;
+
+class {{ class }}
+{
+    public function build(): JsonResponse
+    {
+        return (new OriginalPieChart)
+            ->setTitle('Top 3 scorers of the team.')
+            ->setSubtitle('Season 2021.')
+            ->addData([40, 50, 30])
+            ->setLabels(['Player 7', 'Player 10', 'Player 9'])
+            ->toJson();
+    }
+}

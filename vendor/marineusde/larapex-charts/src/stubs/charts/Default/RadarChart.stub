@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ namespace }};
+
+use marineusde\LarapexCharts\Charts\RadarChart AS OriginalRadarChart;
+
+class {{ class }}
+{
+    public function build(): OriginalRadarChart
+    {
+        return (new OriginalRadarChart)
+            ->setTitle('Individual Player Stats.')
+            ->setSubtitle('Season 2021.')
+            ->addData('Stats', [70, 93, 78, 97, 50, 90])
+            ->setXAxis(['Pass', 'Dribble', 'Shot', 'Stamina', 'Long shots', 'Tactical'])
+            ->setMarkers(['#303F9F'], 7, 10);
+    }
+}
