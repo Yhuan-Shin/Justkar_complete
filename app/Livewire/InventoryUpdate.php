@@ -78,14 +78,14 @@ class InventoryUpdate extends Component
        $this->categories = Categories::where('product_type_id', $product_type_id)->select('id', 'category')->get();
    }
 
-   public function edit($id)
+     public function edit($id)
    {
        $item = Inventory::find($id);
        $this->itemId = $id;
        $this->product_code = $item->product_code;
        $this->product_name = $item->product_name;
-       $this->selectedProduct;
-       $this->selectedCategory;
+       $this->selectedProduct = ProductType::where('id', $item->product_type)->value('id');
+       $this->selectedCategory = Categories::where('id', $item->category)->value('id');
        $this->quantity = $item->quantity;
        $this->brand = Brand::where('id', $item->brand)->value('name');
        $this->size = $item->size;
@@ -96,53 +96,54 @@ class InventoryUpdate extends Component
    }
 
    public function update()
-   {
-       $this->validate();
-       try {
-           $item = Inventory::find($this->itemId);
-           $existingInventory = Inventory::where('product_name', $this->product_name)
-           ->where('brand', Brand::where('id', $this->brand)->value('name'))
-           ->where('size', $this->size)
-           ->where('product_type', ProductType::where('id', $this->selectedProduct)->value('product_type'))
-           ->where('category', Categories::where('id', $this->selectedCategory)->value('category'))
-           ->where('description', $this->description)
-           ->where('id', '!=', $this->itemId) 
-           ->first();
-           if ($existingInventory) {
-               session()->flash('update_error', 'Product already exists.');
-               return; // Stop further execution
-           }
-           $item->update([
-               'product_code' => $this->product_code,
-               'product_name' => $this->query ?? $this->product_name,
-               'product_type' => ProductType::where('id', $this->selectedProduct)->value('product_type'),
-               'category' => Categories::where('id', $this->selectedCategory)->value('category'),
-               'quantity' => $this->quantity,
-               'brand' => Brand::where('id', $this->brand)->value('name'),
-               'size' => $this->size,
-               'description' => $this->description,
-               'price' => $this->price,
-           ]);
-           if ($this->new_image) {
-            // Store the new image
-            $img_path = $this->new_image->store('photos', 'public');
+{
+     $this->validate();
+     try {
+          $item = Inventory::find($this->itemId);
+          $existingInventory = Inventory::where('product_name', $this->product_name)
+          ->where('brand', Brand::where('id', $this->brand)->value('name'))
+          ->where('size', $this->size)
+          ->where('product_type', ProductType::where('id', $this->selectedProduct)->value('product_type'))
+          ->where('category', Categories::where('id', $this->selectedCategory)->value('category'))
+          ->where('description', $this->description)
+          ->where('id', '!=', $this->itemId) 
+          ->first();
+          if ($existingInventory) {
+                session()->flash('update_error', 'Product already exists.');
+                return; // Stop further execution
+          }
 
-            // Optionally delete the old image
-            if ($this->img) {
-                Storage::disk('public')->delete($this->img);
-            }
+          $img_path = $this->img;
+          if ($this->new_image) {
+                // Store the new image
+                $img_path = $this->new_image->store('photos', 'upload');
 
-            // Update the image path in the database
-            $item->img = $img_path;
-            $item->save();
-        }
-            
-           session()->flash('update_success', 'Item updated successfully.');
-       } catch (QueryException $e) {
-           session()->flash('error', 'An error occurred while updating the item.');
-       }
-   }
+                // Optionally delete the old image
+                if ($this->img) {
+                     Storage::disk('public')->delete($this->img);
+                }
+          }
 
+          $data = [
+                'product_code' => $this->product_code,
+                'product_name' => $this->query ?: $this->product_name,
+                'product_type' => ProductType::where('id', $this->selectedProduct)->value('product_type'),
+                'category' => Categories::where('id', $this->selectedCategory)->value('category'),
+                'quantity' => $this->quantity,
+                'brand' => Brand::where('id', $this->brand)->value('name'),
+                'size' => $this->size,
+                'price' => $this->price,
+                'img' => $img_path,
+                'description' => $this->description
+          ];
+
+          $item->update($data);
+
+          session()->flash('update_success', 'Item updated successfully.');
+     } catch (QueryException $e) {
+          session()->flash('error', 'An error occurred while updating the item.');
+     }
+}
   
     public function render()
     {

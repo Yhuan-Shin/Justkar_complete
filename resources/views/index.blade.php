@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +20,7 @@
 
         <nav class="navbar fixed-top navbar-expand-lg bg-dark" id="navbar">
             <div class="container-fluid">
-                <a href="/" class="navbar-brand px-3"><img src="/images/logo.png" alt="" width="50px" height="50px"></a>
+                <a href="/" class="navbar-brand px-3"><img src="/images/logo.png" alt="" width="70px" height="70px"></a>
                 <button class="navbar-toggler btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -81,11 +79,10 @@
      
         <section id="main" style="background-image: url(/images/background.png); background-size: cover; background-position: center;">
         <div class="container p-3">
-       
             <div class="row">
                 <div class="col-md-6 mt-5 py-2">
            
-                    <h1 class="text-uppercase text-dark py-2" id="title">
+                    <h1 class="text-uppercase text-dark py-2 mt-5" id="title">
                     
                         We are here to fix your <span style="color: rgb(220,53,69);">tires</span></h1>
                     <div class="col-md-12">
@@ -93,9 +90,10 @@
                         <button type="button" class="btn btn-dark m-2 fw-bold" data-bs-toggle="modal" data-bs-target="#location"><i class="bi bi-geo-alt-fill"></i> Location</button>
                        
                     </div>
+                    
                 </div>
-               
             </div>
+           
             <div class="container mt-5">                  
                 <div class="row justify-content-center">        
                     <div class="col-lg-3 col-sm-6 col-s-3 p-2 m-3 col-custom ">
@@ -128,7 +126,15 @@
                             </div>
                         </div> 
                             <p class="text-dark" >Not sure which tires are right for you? Our team of tire enthusiasts is here to help you navigate through our extensive inventory and find the best fit for your ride.</p>
-                    </div>         
+                    </div> 
+                    <div class="col-md-12 text-center">
+                        <a href="https://www.facebook.com/JustKarTireSupply" class="btn btn-primary fw-bold m-2" target="_blank">
+                            <i class="bi bi-facebook"></i> Facebook
+                        </a>
+                        <a href="https://www.instagram.com/justkartiresupply/" class="btn btn-danger fw-bold m-2" target="_blank">
+                            <i class="bi bi-instagram"></i> Instagram
+                        </a>
+                    </div>        
                 </div>
             </div>
         </div>
@@ -307,7 +313,8 @@
                             <p class="text-start text" style="font-size: 14px;">Tandoc Street Pecson Ville Subdivision,<br> San Jose del Monte, Philippines</p>
                         </div>
                         <div class="col">
-                            <p class="text-center text"  style="font-size: 14px;">Phone: (+63) 9123456789</p>
+                            <p class="text-center text"  style="font-size: 14px;">Phone: (+63) 916 412 0520
+                            </p>
                         </div>
                         <div class="col">
                             <p class="text-center text" style="font-size: 14px;">Email: justkar@gmail.com</p>
@@ -315,7 +322,7 @@
                         <div class="col d-flex justify-content-center">
                            <a href="https://www.facebook.com/JustKarTireSupply"><i   class="bi bi-facebook m-2 p-3" style="font-size: 30px; color:white;"></i></a>
                            <a href="https://www.instagram.com/justkartiresupply/"><i class="bi bi-instagram m-2 p-3" style="font-size: 30px; color: white;"></i></a>
-                    </div>
+                        </div>
                 </div>  
                 <div class="container">
                     <div class="row text-white">
